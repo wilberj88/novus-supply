@@ -10,3 +10,8 @@ https://moez-62905.medium.com/revolutionizing-manufacturing-how-ai-is-disrupting
 
 Supply Chain CO2 Emissions: 
 https://s-saci95.medium.com/green-inventory-management-case-study-790f2ed7ef7e
+
+
+Propuesta para Nifty formato "YoVendoEn"
+Para las 3-4 grandes plataformas: Amazon + Alibaba + Ebay + X
+Quiere DashBoard Unificado + Automatizar Procesos 
