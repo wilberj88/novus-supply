@@ -15,3 +15,6 @@ https://s-saci95.medium.com/green-inventory-management-case-study-790f2ed7ef7e
 Propuesta para Nifty formato "YoVendoEn"
 Para las 3-4 grandes plataformas: Amazon + Alibaba + Ebay + X
 Quiere DashBoard Unificado + Automatizar Procesos 
+
+Sustainable Supply Chain Optimization: 
+https://towardsdatascience.com/create-a-sustainable-supply-chain-optimization-web-app-20599b98cab6
