@@ -18,3 +18,4 @@ Quiere DashBoard Unificado + Automatizar Procesos
 
 Sustainable Supply Chain Optimization: 
 https://towardsdatascience.com/create-a-sustainable-supply-chain-optimization-web-app-20599b98cab6
+https://medium.com/mlearning-ai/intelligent-document-extraction-for-logistics-and-supply-chain-75f3dbc461f9
