@@ -1,6 +1,11 @@
 # novus-supply
 
-Modelación:
+Modelación Base:
+1) Producción
+2) Almacen
+3) Tienda
+
+Modelación Total:
 1) Demanda
 2) Inventario
 3) Producción
