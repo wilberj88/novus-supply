@@ -12,11 +12,13 @@ Modelación Total:
 3) Fábrica
 4) Producción
 5) Almacenamiento
-6) Distribución
-7) Comercialización
-8) Venta
-9) Post Venta
-10) Impacto social, económico y ambiental
+6) Recogida
+7) Ruta
+8) Distribución
+9) Comercialización
+10) Venta
+11) Post Venta
+12) Impacto social, económico y ambiental
 
 #References:
 Supply Chain Digital Twin:
