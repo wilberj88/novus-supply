@@ -9,13 +9,14 @@ Modelación Base:
 Modelación Total:
 1) Demanda
 2) Inventario
-3) Producción
-4) Almacenamiento
-5) Distribución
-6) Comercialización
-7) Venta
-8) Post Venta
-9) Impacto social, económico y ambiental
+3) Fábrica
+4) Producción
+5) Almacenamiento
+6) Distribución
+7) Comercialización
+8) Venta
+9) Post Venta
+10) Impacto social, económico y ambiental
 
 #References:
 Supply Chain Digital Twin:
