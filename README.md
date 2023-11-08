@@ -1,5 +1,11 @@
 # novus-supply
 
+Formatos de Modelación bajo objetivos:
+1) Reducir costos
+2) Reducir emisiones
+3) Aumentar ingresos
+4) Aumentar margen
+
 Modelación Base:
 1) Abastecimiento
 2) Producción
