@@ -20,6 +20,9 @@ Modelación Total:
 11) Post Venta
 12) Impacto social, económico y ambiental
 
+Consultores:
+https://www.samirsaci.com/
+
 #References:
 Supply Chain Digital Twin:
 https://towardsdatascience.com/what-is-a-supply-chain-digital-twin-e7a8cd9aeb75
