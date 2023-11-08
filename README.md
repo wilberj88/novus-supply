@@ -1,5 +1,16 @@
 # novus-supply
 
+Modelación:
+1) Demanda
+2) Inventario
+3) Producción
+4) Almacenamiento
+5) Distribución
+6) Comercialización
+7) Venta
+8) Post Venta
+9) Impacto social, económico y ambiental
+
 #References:
 Supply Chain Digital Twin:
 https://towardsdatascience.com/what-is-a-supply-chain-digital-twin-e7a8cd9aeb75
