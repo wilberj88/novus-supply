@@ -1,9 +1,10 @@
 # novus-supply
 
 Modelación Base:
-1) Producción
-2) Almacen
-3) Tienda
+1) Abastecimiento
+2) Producción
+3) Almacen
+4) Tienda: ventas históricas, ordes actuales
 
 Modelación Total:
 1) Demanda
