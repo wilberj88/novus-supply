@@ -355,3 +355,145 @@ if a:
         st.write(f"Humidity: {humidity6}")
         st.write(f"Pressure: {pressure6}")
         st.write(f"Weather Report: {report6[0]['description']}")
+
+  if b == "Sistemas de Alarmas":
+    colored_header(
+      label="Mando 3: Alarmas Operativas, Financieras y Comerciales",
+      description="Procesos, Indicadores y Monitoreo",
+      color_name="violet-70",
+    )
+    st.write("In real time monitoring at: ", current_time)
+    st.subheader('Costos Operativos del día de hoy (€)')
+    meta_zona_1 = 10290
+    meta_zona_2 = 11986
+    meta_zona_3 = 11368
+    meta_zona_4 = 14018
+    meta_zona_5 = 14036
+    meta_zona_6 = 5241
+    meta_zona_7 = 3112
+    meta_zona_8 = 110
+    meta_zona_9 = 7338
+    options = {
+                "title": {"text": "🍄"},
+                "tooltip": {
+                    "trigger": "axis",
+                    "axisPointer": {"type": "cross", "label": {"backgroundColor": "#6a7985"}},
+                },
+                "legend": {"data": ["Producto_5", "Producto_4", "Producto_3", "Producto_2", "Producto_1"]},
+                "toolbox": {"feature": {"saveAsImage": {}}},
+                "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
+                "xAxis": [
+                    {
+                        "type": "category",
+                        "boundaryGap": False,
+                        "data": ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00", "23:59"],
+                    }
+                ],
+                "yAxis": [{"type": "value"}],
+                "series": [
+                    {
+                        "name": "Producto_5",
+                        "type": "line",
+                        "stack": "总量",
+                        "areaStyle": {},
+                        "emphasis": {"focus": "series"},
+                        "data": [meta_zona_5*0.1, meta_zona_5*0.2, meta_zona_5*0.35, meta_zona_5*0.45, meta_zona_5*0.5, meta_zona_5*0.75, meta_zona_5],
+                    },
+                      {
+                        "name": "Producto_4",
+                        "type": "line",
+                        "stack": "总量",
+                        "areaStyle": {},
+                        "emphasis": {"focus": "series"},
+                        "data": [meta_zona_4*0.1, meta_zona_4*0.2, meta_zona_4*0.35, meta_zona_4*0.45, meta_zona_4*0.5, meta_zona_4*0.75, meta_zona_4],
+                    },
+                      {
+                        "name": "Producto_3",
+                        "type": "line",
+                        "stack": "总量",
+                        "areaStyle": {},
+                        "emphasis": {"focus": "series"},
+                        "data": [meta_zona_3*0.1, meta_zona_3*0.2, meta_zona_3*0.35, meta_zona_3*0.45, meta_zona_3*0.5, meta_zona_3*0.75, meta_zona_3],
+                    },
+                      {
+                        "name": "Producto_2",
+                        "type": "line",
+                        "stack": "总量",
+                        "areaStyle": {},
+                        "emphasis": {"focus": "series"},
+                        "data": [meta_zona_2*0.1, meta_zona_2*0.2, meta_zona_2*0.35, meta_zona_2*0.45, meta_zona_2*0.5, meta_zona_2*0.75, meta_zona_2],
+                    },
+                      {
+                        "name": "Producto_1",
+                        "type": "line",
+                        "stack": "总量",
+                        "areaStyle": {},
+                        "emphasis": {"focus": "series"},
+                        "data": [meta_zona_1*0.1, meta_zona_1*0.2, meta_zona_1*0.35, meta_zona_1*0.45, meta_zona_1*0.5, meta_zona_1*0.75, meta_zona_1],
+                    },
+                ],
+            }
+    st_echarts(options=options, height="600px")
+    
+    st.subheader('Costos Financieros en Tasa Efectiva Anual')
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("Socios fundadores", "15%", "5%")
+    col2.metric("Nuevos Socios", "14%", "-8%")
+    col3.metric("Bonos", "12%", "25%")
+    col4.metric("Bancos", "10%", "3%")
+    
+    st.subheader('Desafíos Comerciales')
+    option = {
+            "title": {"text": "Eficacia Ventas", "subtext": "Porcentaje Conversión(%)"},
+            "tooltip": {"trigger": "item", "formatter": "{a} <br/>{b} : {c}%"},
+            "toolbox": {
+                "feature": {
+                    "dataView": {"readOnly": False},
+                    "restore": {},
+                    "saveAsImage": {},
+                }
+            },
+            "legend": {"data": ["Contactados", "Interesados", "Persuadidos", "Comprometidos", "Clientes"]},
+            "series": [
+                {
+                    "name": "Contactados",
+                    "type": "funnel",
+                    "left": "10%",
+                    "width": "80%",
+                    "label": {"formatter": "{b}%"},
+                    "labelLine": {"show": False},
+                    "itemStyle": {"opacity": 0.7},
+                    "emphasis": {
+                        "label": {"position": "inside", "formatter": "{b}预期: {c}%"}
+                    },
+                    "data": [
+                        {"value": 60, "name": "Persuadidos"},
+                        {"value": 40, "name": "Comprometidos"},
+                        {"value": 20, "name": "Clientes"},
+                        {"value": 80, "name": "Interesados"},
+                        {"value": 100, "name": "Contactados"},
+                    ],
+                },
+                {
+                    "name": "Margen",
+                    "type": "funnel",
+                    "left": "10%",
+                    "width": "80%",
+                    "maxSize": "80%",
+                    "label": {"position": "inside", "formatter": "{c}%", "color": "#fff"},
+                    "itemStyle": {"opacity": 0.5, "borderColor": "#fff", "borderWidth": 2},
+                    "emphasis": {
+                        "label": {"position": "inside", "formatter": "{b}实际: {c}%"}
+                    },
+                    "data": [
+                        {"value": 30, "name": "Persuadidos"},
+                        {"value": 10, "name": "Comprometidos"},
+                        {"value": 5, "name": "Clientes"},
+                        {"value": 50, "name": "Interesados"},
+                        {"value": 80, "name": "Contactados"},
+                    ],
+                    "z": 100,
+                },
+            ],
+        }
+    st_echarts(option, height="500px")
