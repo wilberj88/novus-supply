@@ -58,4 +58,114 @@ if a:
       """
     )
 
+  if b == "Datos Históricos":
+    colored_header(
+      label="Mando 1: Modelación Histórica",
+      description="Costos, Ventas, Rentabilidades",
+      color_name="violet-70",
+    )
+    c = st.selectbox('Selecciona un año de análisis', ('2018', '2019', '2020', '2021', '2022', '2023', '2024'))
+    if c:
+        st.write('Desempeño financiero en el año ', b)
+        col4, col5 = st.columns(2)
+        with col4:
+            fig1 = go.Figure(data=[go.Sankey(
+              node = dict(
+                pad = 15,
+                thickness = 20,
+                line = dict(color = "black", width = 0.5),
+                label = ["Fuente1", "Fuente2", "Fuente 3", "Online", "Offline", "Ingresos Totales"],
+                color = "blue"
+              ),
+              link = dict(
+                source = [0, 1, 2, 3, 4], # indices correspond to labels, eg A1, A2, A1, B1, ...
+                target = [3, 4, 3, 5, 5],
+                value = [8, 4, 5, 13, 4]
+            ))])
+          
+            fig1.update_layout(title_text="Ingresos", font_size=10)
+            st.plotly_chart(fig1, theme="streamlit")
+        
+        with col5:
+            fig1 = go.Figure(data=[go.Sankey(
+              node = dict(
+                pad = 15,
+                thickness = 20,
+                line = dict(color = "black", width = 0.5),
+                label = ["Egresos Totales", "Necesidades", "Gastos", "Inversiones", "Vivienda", "Estudio", "Alimentación", "Transporte", "Entretenimiento", "Viajes", "Acciones", "Activos", "Criptomonedas", "Bonos"],
+                color = "red"
+              ),
+              link = dict(
+                source = [0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 3, 3], # indices correspond to labels, eg A1, A2, A1, B1, ...
+                target = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+                value = [44, 44, 44, 10, 20, 10, 22, 22, 10, 14, 10, 10, 10]
+            ))])
+          
+            fig1.update_layout(title_text="Gastos", font_size=10)
+            st.plotly_chart(fig1, theme="streamlit")
+    
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+          acelerometro1 = {
+                "tooltip": {"formatter": "{a} <br/>{b} : {c}%"},
+                "series": [
+                    {
+                        "name": "Pressure",
+                        "type": "gauge",
+                        "axisLine": {
+                            "lineStyle": {
+                                "width": 10,
+                            },
+                        },
+                        "progress": {"show": "true", "width": 10},
+                        "detail": {"valueAnimation": "true", "formatter": "{value}"},
+                        "data": [{"value": 50, "name": "Liquidez"}],
+                    }
+                ],
+            }
+        
+          st_echarts(options=acelerometro1)
+        
+        with col2:
+          acelerometro2 = {
+                "tooltip": {"formatter": "{a} <br/>{b} : {c}%"},
+                "series": [
+                    {
+                        "name": "Pressure",
+                        "type": "gauge",
+                        "axisLine": {
+                            "lineStyle": {
+                                "width": 10,
+                            },
+                        },
+                        "progress": {"show": "true", "width": 10},
+                        "detail": {"valueAnimation": "true", "formatter": "{value}"},
+                        "data": [{"value": 85, "name": "Endeudamiento"}],
+                    }
+                ],
+            }
+        
+          st_echarts(options=acelerometro2)
+            
+        with col3:
+          acelerometro3 = {
+                "tooltip": {"formatter": "{a} <br/>{b} : {c}%"},
+                "series": [
+                    {
+                        "name": "Pressure",
+                        "type": "gauge",
+                        "axisLine": {
+                            "lineStyle": {
+                                "width": 10,
+                            },
+                        },
+                        "progress": {"show": "true", "width": 10},
+                        "detail": {"valueAnimation": "true", "formatter": "{value}"},
+                        "data": [{"value": 20, "name": "Solvencia"}],
+                    }
+                ],
+            }
+          st_echarts(options=acelerometro3)
+
 
