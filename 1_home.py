@@ -362,6 +362,7 @@ if a:
       description="Procesos, Indicadores y Monitoreo",
       color_name="violet-70",
     )
+    current_time = time.ctime()
     st.write("In real time monitoring at: ", current_time)
     st.subheader('Costos Operativos del día de hoy (€)')
     meta_zona_1 = 10290
