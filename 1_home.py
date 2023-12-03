@@ -15,7 +15,7 @@ import plotly.graph_objects as go
 
 
 st.set_page_config(
-  page_title="Novus Mando Supply",
+  page_title="Novus Mando Chains",
   page_icon="🏭",
   layout="wide"
 )
@@ -26,7 +26,7 @@ st.write("""
 
 st.sidebar.markdown("Desarrollado por Novus Mando, S.L. (www.novussolutions.io)")
 
-a = st.selectbox("Selecciona un Mando 🎮 de la Cadena de Suministro:", ("Demanda", "Inventario", "Producción", "Almacenamiento", "Distribución", "Comercialización", "Ventas", "PostVentas", "Finanzas", "Impacto"), index=None, placeholder="Choose an option")
+a = st.selectbox("Selecciona qué quieres optimizar con tu Mando 🎮:", ("Ingresos", "Costos", "Producción", "Rentabilidad", "Sostenibilidad"), index=None, placeholder="Choose an option")
 
 if a:
   b = st.selectbox("Selecciona el módulo de análisis 🔎:", ("Estrategia Gobernanza de Datos", "Datos Históricos", "Datos en Tiempo Real", "Sistemas de Alarmas", "Sistemas de Recomendaciones"), index=None, placeholder="Choose an option")
