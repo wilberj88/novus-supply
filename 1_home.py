@@ -26,7 +26,7 @@ st.write("""
 
 st.sidebar.markdown("Desarrollado por Novus Mando, S.L. (www.novussolutions.io)")
 
-a = st.selectbox("Selecciona qué quieres optimizar con tu Mando 🎮:", ("Ingresos", "Costos", "Producción", "Rentabilidad", "Sostenibilidad"), index=None, placeholder="Choose an option")
+a = st.selectbox("Selecciona qué quieres optimizar con tu Mando 🎮:", ("Ingresos", "Costos", "Rentabilidad", "Sostenibilidad"), index=None, placeholder="Choose an option")
 
 if a:
   b = st.selectbox("Selecciona el módulo de análisis 🔎:", ("Estrategia Gobernanza de Datos", "Datos Históricos", "Datos en Tiempo Real", "Sistemas de Alarmas", "Sistemas de Recomendaciones"), index=None, placeholder="Choose an option")
