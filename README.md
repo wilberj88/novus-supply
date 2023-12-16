@@ -22,7 +22,7 @@ Modelación Total:
 7) Ruta
 8) Distribución
 9) Comercialización
-10) Venta: https://medium.com/@anjaliramesh/forecasting-walmart-sales-with-machine-learning-2a1249c55c9c
+10) Venta: https://medium.com/@anjaliramesh/forecasting-walmart-sales-with-machine-learning-2a1249c55c9c https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting
 11) Post Venta
 12) Impacto social, económico y ambiental
 
