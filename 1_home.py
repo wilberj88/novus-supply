@@ -74,3 +74,12 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+
+
+#######################
+# Title
+st.write("""
+# 🎮 Novus Mando 🚚 Supply Chain 🏭 Home
+""")
+
+st.sidebar.markdown("Desarrollado por [Novus Mando] (www.novussolutions.io)")
