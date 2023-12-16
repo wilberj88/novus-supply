@@ -12,600 +12,276 @@ import requests
 import pandas as pd
 from streamlit_extras.let_it_rain import rain 
 import plotly.graph_objects as go
+import altair as lt
+import plotly.express as px
 
 
+#######################
+# Page configuration
 st.set_page_config(
   page_title="Novus Mando Chains",
   page_icon="🏭",
   layout="wide"
 )
+alt.themes.enable("dark")
 
+#######################
+# CSS styling
+st.markdown("""
+<style>
+
+[data-testid="block-container"] {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 0rem;
+    margin-bottom: -7rem;
+}
+
+[data-testid="stVerticalBlock"] {
+    padding-left: 0rem;
+    padding-right: 0rem;
+}
+
+[data-testid="stMetric"] {
+    background-color: #393939;
+    text-align: center;
+    padding: 15px 0;
+}
+
+[data-testid="stMetricLabel"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+[data-testid="stMetricDeltaIcon-Up"] {
+    position: relative;
+    left: 38%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+[data-testid="stMetricDeltaIcon-Down"] {
+    position: relative;
+    left: 38%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+
+#######################
+# Load data
+df_reshaped = pd.read_csv('data/us-population-2010-2019-reshaped.csv')
+
+
+#######################
+# Title
 st.write("""
 # 🎮 Novus Mando 🚚 Supply Chain 🏭
 """)
 
-st.sidebar.markdown("Desarrollado por Novus Mando, S.L. (www.novussolutions.io)")
+#######################
+# USER SELECTION
+year_list = list(df_reshaped.year.unique())[::-1]    
+selected_year = st.selectbox('Select a year', year_list)
+df_selected_year = df_reshaped[df_reshaped.year == selected_year]
+df_selected_year_sorted = df_selected_year.sort_values(by="population", ascending=False)
 
-a = st.selectbox("Selecciona qué quieres optimizar con tu Mando 🎮:", ("Ingresos", "Costos", "Rentabilidad", "Sostenibilidad"), index=None, placeholder="Choose an option")
+color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
+selected_color_theme = st.selectbox('Select a color theme', color_theme_list)
 
-if a:
-  b = st.selectbox("Selecciona el módulo de análisis 🔎:", ("Estrategia Gobernanza de Datos", "Datos Históricos", "Datos en Tiempo Real", "Sistemas de Alarmas", "Sistemas de Recomendaciones"), index=None, placeholder="Choose an option")
-  if b == "Estrategia Gobernanza de Datos":
-    colored_header(
-      label="Mando 2: Estrategia de Datos e Inteligencia Artificial",
-      description="Procesos, Indicadores y Monitoreo",
-      color_name="violet-70",
-    )
-    st.markdown(
-      """
-      - 🗣️ _    Titularidad
-      - ♻️ _    Ciclo de Vida
-      - 🏗️ _     Arquitectura
-      - 🧮 _     Modelación
-      - ⏲️ _     Operación
-      - 🛂 _     Seguridad
-      - 🚫 _     Privacidad
-      - 🤝 _     Conciliación
-      - 💡 _     Referentes
-      - 🌊 _     Lago
-      - ⚠️ _     Elementos Críticos
-      - ℹ️ _     Metadata
-      - ✅ _     Calidad
-      - 🔄 _     Integración
-      - ✝️ _     Políticas
-      - ▶️ _     Estándares
-      - 🔁 _     Procesos
-      """
-    )
+#######################
+# PLOTS
 
-  if b == "Datos Históricos":
-    colored_header(
-      label="Mando 1: Modelación Histórica",
-      description="Costos, Ventas, Rentabilidades",
-      color_name="violet-70",
-    )
-    c = st.selectbox('Selecciona un año de análisis', ('2018', '2019', '2020', '2021', '2022', '2023', '2024'))
-    if c:
-        st.write('Desempeño financiero en el año ', b)
-        col4, col5 = st.columns(2)
-        with col4:
-            fig1 = go.Figure(data=[go.Sankey(
-              node = dict(
-                pad = 15,
-                thickness = 20,
-                line = dict(color = "black", width = 0.5),
-                label = ["Fuente1", "Fuente2", "Fuente 3", "Online", "Offline", "Ingresos Totales"],
-                color = "blue"
-              ),
-              link = dict(
-                source = [0, 1, 2, 3, 4], # indices correspond to labels, eg A1, A2, A1, B1, ...
-                target = [3, 4, 3, 5, 5],
-                value = [8, 4, 5, 13, 4]
-            ))])
-          
-            fig1.update_layout(title_text="Ingresos", font_size=10)
-            st.plotly_chart(fig1, theme="streamlit")
-        
-        with col5:
-            fig1 = go.Figure(data=[go.Sankey(
-              node = dict(
-                pad = 15,
-                thickness = 20,
-                line = dict(color = "black", width = 0.5),
-                label = ["Egresos Totales", "Necesidades", "Gastos", "Inversiones", "Vivienda", "Estudio", "Alimentación", "Transporte", "Entretenimiento", "Viajes", "Acciones", "Activos", "Criptomonedas", "Bonos"],
-                color = "red"
-              ),
-              link = dict(
-                source = [0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 3, 3], # indices correspond to labels, eg A1, A2, A1, B1, ...
-                target = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-                value = [44, 44, 44, 10, 20, 10, 22, 22, 10, 14, 10, 10, 10]
-            ))])
-          
-            fig1.update_layout(title_text="Gastos", font_size=10)
-            st.plotly_chart(fig1, theme="streamlit")
-    
-        
-        col1, col2, col3 = st.columns(3)
-        with col1:
-          acelerometro1 = {
-                "tooltip": {"formatter": "{a} <br/>{b} : {c}%"},
-                "series": [
-                    {
-                        "name": "Pressure",
-                        "type": "gauge",
-                        "axisLine": {
-                            "lineStyle": {
-                                "width": 10,
-                            },
-                        },
-                        "progress": {"show": "true", "width": 10},
-                        "detail": {"valueAnimation": "true", "formatter": "{value}"},
-                        "data": [{"value": 50, "name": "Liquidez"}],
-                    }
-                ],
-            }
-        
-          st_echarts(options=acelerometro1)
-        
-        with col2:
-          acelerometro2 = {
-                "tooltip": {"formatter": "{a} <br/>{b} : {c}%"},
-                "series": [
-                    {
-                        "name": "Pressure",
-                        "type": "gauge",
-                        "axisLine": {
-                            "lineStyle": {
-                                "width": 10,
-                            },
-                        },
-                        "progress": {"show": "true", "width": 10},
-                        "detail": {"valueAnimation": "true", "formatter": "{value}"},
-                        "data": [{"value": 85, "name": "Endeudamiento"}],
-                    }
-                ],
-            }
-        
-          st_echarts(options=acelerometro2)
-            
-        with col3:
-          acelerometro3 = {
-                "tooltip": {"formatter": "{a} <br/>{b} : {c}%"},
-                "series": [
-                    {
-                        "name": "Pressure",
-                        "type": "gauge",
-                        "axisLine": {
-                            "lineStyle": {
-                                "width": 10,
-                            },
-                        },
-                        "progress": {"show": "true", "width": 10},
-                        "detail": {"valueAnimation": "true", "formatter": "{value}"},
-                        "data": [{"value": 20, "name": "Solvencia"}],
-                    }
-                ],
-            }
-          st_echarts(options=acelerometro3)
+# Heatmap
+def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
+    heatmap = alt.Chart(input_df).mark_rect().encode(
+            y=alt.Y(f'{input_y}:O', axis=alt.Axis(title="Year", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
+            x=alt.X(f'{input_x}:O', axis=alt.Axis(title="", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
+            color=alt.Color(f'max({input_color}):Q',
+                             legend=None,
+                             scale=alt.Scale(scheme=input_color_theme)),
+            stroke=alt.value('black'),
+            strokeWidth=alt.value(0.25),
+        ).properties(width=900
+        ).configure_axis(
+        labelFontSize=12,
+        titleFontSize=12
+        ) 
+    # height=300
+    return heatmap
 
-  if b == "Datos en Tiempo Real":
-    current_time = time.ctime()
-    st.write("In real time monitoring at: ", current_time)
-    
-    st.header('Tendencias y Climas Mundiales 🌎')
-    
-    colored_header(
-        label="Búsquedas online en Google",
-        description="Última hora y día",
-        color_name="violet-70",
+# Choropleth map
+def make_choropleth(input_df, input_id, input_column, input_color_theme):
+    choropleth = px.choropleth(input_df, locations=input_id, color=input_column, locationmode="USA-states",
+                               color_continuous_scale=input_color_theme,
+                               range_color=(0, max(df_selected_year.population)),
+                               scope="usa",
+                               labels={'population':'Population'}
+                              )
+    choropleth.update_layout(
+        template='plotly_dark',
+        plot_bgcolor='rgba(0, 0, 0, 0)',
+        paper_bgcolor='rgba(0, 0, 0, 0)',
+        margin=dict(l=0, r=0, t=0, b=0),
+        height=350
     )
-    
-    pytrends = TrendReq(hl='en-US', tz=360)
-    col4, col5, col6 = st.columns(3)
-    with col4:
-        st.write("🇺🇸 USA Top10 Trending Search in last hour")
-          # Google Trends data
-        df1 = pytrends.trending_searches(pn='united_states')
-        st.dataframe(df1.head(10))
-    with col5:
-        st.write("🇬🇧 UK Top10 Trending Search in last hour")
-          # Google Trends data
-        df2 = pytrends.trending_searches(pn='united_kingdom')
-        st.dataframe(df2.head(10))
-    with col6:
-        st.write("🇨🇴 COL Top10 Trending Search in last hour")
-        df3 = pytrends.trending_searches(pn='colombia')
-        st.dataframe(df3.head(10))
-        
-    
-    
-    
-    
-    colored_header(
-        label="Wheater Now",
-        description="América, EU & ASIA",
-        color_name="red-70",
-    )
-    
-    #ALARMS CONFIGURATION
-    BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
-    API_KEY = "146090ad17fa8843bc9eca97c53926b4"
-    sity1 = "New York"
-    sity2 = "Bogota"
-    sity3 = "Toledo"
-    sity4 = "London"
-    sity5 = "Pekin"
-    sity6 = "Bombai"
-    URL1 = BASE_URL + "q=" + sity1 + "&appid=" + API_KEY
-    URL2 = BASE_URL + "q=" + sity2 + "&appid=" + API_KEY
-    URL3 = BASE_URL + "q=" + sity3 + "&appid=" + API_KEY
-    URL4 = BASE_URL + "q=" + sity4 + "&appid=" + API_KEY
-    URL5 = BASE_URL + "q=" + sity5 + "&appid=" + API_KEY
-    URL6 = BASE_URL + "q=" + sity6 + "&appid=" + API_KEY
-    
-    
-    response1 = requests.get(URL1)
-    response2 = requests.get(URL2)
-    response3 = requests.get(URL3)
-    response4 = requests.get(URL4)
-    response5 = requests.get(URL5)
-    response6 = requests.get(URL6)
-    
-    if response1.status_code == 200:
-       # getting data in the json format
-       data1 = response1.json()
-       # getting the main dict block
-       main1 = data1['main']
-      # getting temperature
-       temperature1 = main1['temp']
-       # getting the humidity
-       humidity1 = main1['humidity']
-       # getting the pressure
-       pressure1 = main1['pressure']
-       # weather report
-       report1 = data1['weather']
-    
-    if response2.status_code == 200:
-       # getting data in the json format
-       data2 = response2.json()
-       # getting the main dict block
-       main2 = data2['main']
-      # getting temperature
-       temperature2 = main2['temp']
-       # getting the humidity
-       humidity2 = main2['humidity']
-       # getting the pressure
-       pressure2 = main2['pressure']
-       # weather report
-       report2 = data2['weather']
-    
-    if response3.status_code == 200:
-       # getting data in the json format
-       data3 = response3.json()
-       # getting the main dict block
-       main3 = data3['main']
-      # getting temperature
-       temperature3 = main3['temp']
-       # getting the humidity
-       humidity3 = main3['humidity']
-       # getting the pressure
-       pressure3 = main3['pressure']
-       # weather report
-       report3 = data3['weather']
-    
-    if response4.status_code == 200:
-       # getting data in the json format
-       data4 = response4.json()
-       # getting the main dict block
-       main4 = data4['main']
-      # getting temperature
-       temperature4 = main4['temp']
-       # getting the humidity
-       humidity4 = main4['humidity']
-       # getting the pressure
-       pressure4 = main4['pressure']
-       # weather report
-       report4 = data4['weather']
-    
-    if response5.status_code == 200:
-       # getting data in the json format
-       data5 = response5.json()
-       # getting the main dict block
-       main5 = data5['main']
-      # getting temperature
-       temperature5 = main5['temp']
-       # getting the humidity
-       humidity5 = main5['humidity']
-       # getting the pressure
-       pressure5 = main5['pressure']
-       # weather report
-       report5 = data5['weather']
-    
-    if response6.status_code == 200:
-       # getting data in the json format
-       data6 = response6.json()
-       # getting the main dict block
-       main6 = data6['main']
-      # getting temperature
-       temperature6 = main6['temp']
-       # getting the humidity
-       humidity6 = main6['humidity']
-       # getting the pressure
-       pressure6 = main6['pressure']
-       # weather report
-       report6 = data6['weather']
-    
-    col4, col5, col6 = st.columns(3)
-    
-    with col4:
-        st.write("🌧 USA ☀️")
-        st.write(f"{sity1:-^30}")
-        st.write(f"Temperature (Kelvins): {temperature1}")
-        st.write(f"Humidity: {humidity1}")
-        st.write(f"Pressure: {pressure1}")
-        st.write(f"Weather Report: {report1[0]['description']}")
-        st.write(f"{sity2:-^30}")
-        st.write(f"Temperature (Kelvins): {temperature2}")
-        st.write(f"Humidity: {humidity2}")
-        st.write(f"Pressure: {pressure2}")
-        st.write(f"Weather Report: {report2[0]['description']}")
-    
-    with col5:
-        st.write("🌧 Europe ☀️")
-        st.write(f"{sity3:-^30}")
-        st.write(f"Temperature (Kelvins): {temperature3}")
-        st.write(f"Humidity: {humidity3}")
-        st.write(f"Pressure: {pressure3}")
-        st.write(f"Weather Report: {report3[0]['description']}")
-        st.write(f"{sity4:-^30}")
-        st.write(f"Temperature (Kelvins): {temperature4}")
-        st.write(f"Humidity: {humidity4}")
-        st.write(f"Pressure: {pressure4}")
-        st.write(f"Weather Report: {report4[0]['description']}")
-        
-    with col6:
-        st.write("🌧 Asia ☀️")
-        st.write(f"{sity5:-^30}")
-        st.write(f"Temperature (Kelvins): {temperature5}")
-        st.write(f"Humidity: {humidity5}")
-        st.write(f"Pressure: {pressure5}")
-        st.write(f"Weather Report: {report5[0]['description']}")
-        st.write(f"{sity6:-^30}")
-        st.write(f"Temperature (Kelvins): {temperature6}")
-        st.write(f"Humidity: {humidity6}")
-        st.write(f"Pressure: {pressure6}")
-        st.write(f"Weather Report: {report6[0]['description']}")
+    return choropleth
 
-  if b == "Sistemas de Alarmas":
-    colored_header(
-      label="Mando 3: Alarmas Operativas, Financieras y Comerciales",
-      description="Procesos, Indicadores y Monitoreo",
-      color_name="violet-70",
-    )
-    current_time = time.ctime()
-    st.write("In real time monitoring at: ", current_time)
-    st.subheader('Costos Operativos del día de hoy (€)')
-    meta_zona_1 = 10290
-    meta_zona_2 = 11986
-    meta_zona_3 = 11368
-    meta_zona_4 = 14018
-    meta_zona_5 = 14036
-    meta_zona_6 = 5241
-    meta_zona_7 = 3112
-    meta_zona_8 = 110
-    meta_zona_9 = 7338
-    options = {
-                "title": {"text": "🍄"},
-                "tooltip": {
-                    "trigger": "axis",
-                    "axisPointer": {"type": "cross", "label": {"backgroundColor": "#6a7985"}},
-                },
-                "legend": {"data": ["Producto_5", "Producto_4", "Producto_3", "Producto_2", "Producto_1"]},
-                "toolbox": {"feature": {"saveAsImage": {}}},
-                "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
-                "xAxis": [
-                    {
-                        "type": "category",
-                        "boundaryGap": False,
-                        "data": ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00", "23:59"],
-                    }
-                ],
-                "yAxis": [{"type": "value"}],
-                "series": [
-                    {
-                        "name": "Producto_5",
-                        "type": "line",
-                        "stack": "总量",
-                        "areaStyle": {},
-                        "emphasis": {"focus": "series"},
-                        "data": [meta_zona_5*0.1, meta_zona_5*0.2, meta_zona_5*0.35, meta_zona_5*0.45, meta_zona_5*0.5, meta_zona_5*0.75, meta_zona_5],
-                    },
-                      {
-                        "name": "Producto_4",
-                        "type": "line",
-                        "stack": "总量",
-                        "areaStyle": {},
-                        "emphasis": {"focus": "series"},
-                        "data": [meta_zona_4*0.1, meta_zona_4*0.2, meta_zona_4*0.35, meta_zona_4*0.45, meta_zona_4*0.5, meta_zona_4*0.75, meta_zona_4],
-                    },
-                      {
-                        "name": "Producto_3",
-                        "type": "line",
-                        "stack": "总量",
-                        "areaStyle": {},
-                        "emphasis": {"focus": "series"},
-                        "data": [meta_zona_3*0.1, meta_zona_3*0.2, meta_zona_3*0.35, meta_zona_3*0.45, meta_zona_3*0.5, meta_zona_3*0.75, meta_zona_3],
-                    },
-                      {
-                        "name": "Producto_2",
-                        "type": "line",
-                        "stack": "总量",
-                        "areaStyle": {},
-                        "emphasis": {"focus": "series"},
-                        "data": [meta_zona_2*0.1, meta_zona_2*0.2, meta_zona_2*0.35, meta_zona_2*0.45, meta_zona_2*0.5, meta_zona_2*0.75, meta_zona_2],
-                    },
-                      {
-                        "name": "Producto_1",
-                        "type": "line",
-                        "stack": "总量",
-                        "areaStyle": {},
-                        "emphasis": {"focus": "series"},
-                        "data": [meta_zona_1*0.1, meta_zona_1*0.2, meta_zona_1*0.35, meta_zona_1*0.45, meta_zona_1*0.5, meta_zona_1*0.75, meta_zona_1],
-                    },
-                ],
-            }
-    st_echarts(options=options, height="600px")
-    
-    st.subheader('Costos Financieros en Tasa Efectiva Anual')
-    col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Socios fundadores", "15%", "5%")
-    col2.metric("Nuevos Socios", "14%", "-8%")
-    col3.metric("Bonos", "12%", "25%")
-    col4.metric("Bancos", "10%", "3%")
-    
-    st.subheader('Desafíos Comerciales')
-    option = {
-            "title": {"text": "Eficacia Ventas", "subtext": "Porcentaje Conversión(%)"},
-            "tooltip": {"trigger": "item", "formatter": "{a} <br/>{b} : {c}%"},
-            "toolbox": {
-                "feature": {
-                    "dataView": {"readOnly": False},
-                    "restore": {},
-                    "saveAsImage": {},
-                }
-            },
-            "legend": {"data": ["Contactados", "Interesados", "Persuadidos", "Comprometidos", "Clientes"]},
-            "series": [
-                {
-                    "name": "Contactados",
-                    "type": "funnel",
-                    "left": "10%",
-                    "width": "80%",
-                    "label": {"formatter": "{b}%"},
-                    "labelLine": {"show": False},
-                    "itemStyle": {"opacity": 0.7},
-                    "emphasis": {
-                        "label": {"position": "inside", "formatter": "{b}预期: {c}%"}
-                    },
-                    "data": [
-                        {"value": 60, "name": "Persuadidos"},
-                        {"value": 40, "name": "Comprometidos"},
-                        {"value": 20, "name": "Clientes"},
-                        {"value": 80, "name": "Interesados"},
-                        {"value": 100, "name": "Contactados"},
-                    ],
-                },
-                {
-                    "name": "Margen",
-                    "type": "funnel",
-                    "left": "10%",
-                    "width": "80%",
-                    "maxSize": "80%",
-                    "label": {"position": "inside", "formatter": "{c}%", "color": "#fff"},
-                    "itemStyle": {"opacity": 0.5, "borderColor": "#fff", "borderWidth": 2},
-                    "emphasis": {
-                        "label": {"position": "inside", "formatter": "{b}实际: {c}%"}
-                    },
-                    "data": [
-                        {"value": 30, "name": "Persuadidos"},
-                        {"value": 10, "name": "Comprometidos"},
-                        {"value": 5, "name": "Clientes"},
-                        {"value": 50, "name": "Interesados"},
-                        {"value": 80, "name": "Contactados"},
-                    ],
-                    "z": 100,
-                },
-            ],
-        }
-    st_echarts(option, height="500px")
 
-  if b == "Sistemas de Recomendaciones":
-    colored_header(
-      label="Mando 4: Recomendaciones Operativas, Financieras y Comerciales",
-      description="Procesos, Indicadores y Monitoreo",
-      color_name="violet-70",
-    )
+# Donut chart
+def make_donut(input_response, input_text, input_color):
+  if input_color == 'blue':
+      chart_color = ['#29b5e8', '#155F7A']
+  if input_color == 'green':
+      chart_color = ['#27AE60', '#12783D']
+  if input_color == 'orange':
+      chart_color = ['#F39C12', '#875A12']
+  if input_color == 'red':
+      chart_color = ['#E74C3C', '#781F16']
     
-    col7, col8, col9 = st.columns(3)
+  source = pd.DataFrame({
+      "Topic": ['', input_text],
+      "% value": [100-input_response, input_response]
+  })
+  source_bg = pd.DataFrame({
+      "Topic": ['', input_text],
+      "% value": [100, 0]
+  })
     
-    with col7:
-        st.write('Oportunidades Operativas 📢')
-        with st.expander("Frentes de mayor capacidad de reducción de costos"):
-            option = {
-                "legend": {},
-                "tooltip": {"trigger": "axis", "showContent": False},
-                "dataset": {
-                    "source": [
-                        ["product", "Monday", "Thursday", "Wednesday", "Tuesday", "Friday", "Saturday"],
-                        ["Insumos", 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
-                        ["Personal", 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
-                        ["Financiación", 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
-                        ["Energía", 25.2, 37.1, 41.2, 18, 33.9, 49.1],
-                    ]
-                },
-                "xAxis": {"type": "category"},
-                "yAxis": {"gridIndex": 0},
-                "grid": {"top": "55%"},
-                "series": [
-                    {
-                        "type": "line",
-                        "smooth": True,
-                        "seriesLayoutBy": "row",
-                        "emphasis": {"focus": "series"},
-                    },
-                    {
-                        "type": "line",
-                        "smooth": True,
-                        "seriesLayoutBy": "row",
-                        "emphasis": {"focus": "series"},
-                    },
-                    {
-                        "type": "line",
-                        "smooth": True,
-                        "seriesLayoutBy": "row",
-                        "emphasis": {"focus": "series"},
-                    },
-                    {
-                        "type": "line",
-                        "smooth": True,
-                        "seriesLayoutBy": "row",
-                        "emphasis": {"focus": "series"},
-                    },
-                    {
-                        "type": "pie",
-                        "id": "pie",
-                        "radius": "30%",
-                        "center": ["50%", "25%"],
-                        "emphasis": {"focus": "data"},
-                        "label": {"formatter": "{b}: {@2012} ({d}%)"},
-                        "encode": {"itemName": "product", "value": "Monday", "tooltip": "Monday"},
-                    },
-                ],
-            }
-            st_echarts(option, height="500px", key="echarts")
+  plot = alt.Chart(source).mark_arc(innerRadius=45, cornerRadius=25).encode(
+      theta="% value",
+      color= alt.Color("Topic:N",
+                      scale=alt.Scale(
+                          #domain=['A', 'B'],
+                          domain=[input_text, ''],
+                          # range=['#29b5e8', '#155F7A']),  # 31333F
+                          range=chart_color),
+                      legend=None),
+  ).properties(width=130, height=130)
+    
+  text = plot.mark_text(align='center', color="#29b5e8", font="Lato", fontSize=32, fontWeight=700, fontStyle="italic").encode(text=alt.value(f'{input_response} %'))
+  plot_bg = alt.Chart(source_bg).mark_arc(innerRadius=45, cornerRadius=20).encode(
+      theta="% value",
+      color= alt.Color("Topic:N",
+                      scale=alt.Scale(
+                          # domain=['A', 'B'],
+                          domain=[input_text, ''],
+                          range=chart_color),  # 31333F
+                      legend=None),
+  ).properties(width=130, height=130)
+  return plot_bg + plot + text
+
+# Convert population to text 
+def format_number(num):
+    if num > 1000000:
+        if not num % 1000000:
+            return f'{num // 1000000} M'
+        return f'{round(num / 1000000, 1)} M'
+    return f'{num // 1000} K'
+
+# Calculation year-over-year population migrations
+def calculate_population_difference(input_df, input_year):
+  selected_year_data = input_df[input_df['year'] == input_year].reset_index()
+  previous_year_data = input_df[input_df['year'] == input_year - 1].reset_index()
+  selected_year_data['population_difference'] = selected_year_data.population.sub(previous_year_data.population, fill_value=0)
+  return pd.concat([selected_year_data.states, selected_year_data.id, selected_year_data.population, selected_year_data.population_difference], axis=1).sort_values(by="population_difference", ascending=False)
+
+
+#######################
+# Dashboard Main Panel
+col = st.columns((1.5, 4.5, 2), gap='medium')
+
+with col[0]:
+    st.markdown('#### Gains/Losses')
+
+    df_population_difference_sorted = calculate_population_difference(df_reshaped, selected_year)
+
+    if selected_year > 2010:
+        first_state_name = df_population_difference_sorted.states.iloc[0]
+        first_state_population = format_number(df_population_difference_sorted.population.iloc[0])
+        first_state_delta = format_number(df_population_difference_sorted.population_difference.iloc[0])
+    else:
+        first_state_name = '-'
+        first_state_population = '-'
+        first_state_delta = ''
+    st.metric(label=first_state_name, value=first_state_population, delta=first_state_delta)
+
+    if selected_year > 2010:
+        last_state_name = df_population_difference_sorted.states.iloc[-1]
+        last_state_population = format_number(df_population_difference_sorted.population.iloc[-1])   
+        last_state_delta = format_number(df_population_difference_sorted.population_difference.iloc[-1])   
+    else:
+        last_state_name = '-'
+        last_state_population = '-'
+        last_state_delta = ''
+    st.metric(label=last_state_name, value=last_state_population, delta=last_state_delta)
+
+    
+    st.markdown('#### States Migration')
+
+    if selected_year > 2010:
+        # Filter states with population difference > 50000
+        # df_greater_50000 = df_population_difference_sorted[df_population_difference_sorted.population_difference_absolute > 50000]
+        df_greater_50000 = df_population_difference_sorted[df_population_difference_sorted.population_difference > 50000]
+        df_less_50000 = df_population_difference_sorted[df_population_difference_sorted.population_difference < -50000]
         
-    with col8:
-        st.write('Oportunidades Financieras 💰')
-        with st.expander("Liquidez:"):
-            st.subheader('Corto plazo: 1-3 meses')
-            st.write('Las mejores tasas se encuentran en el banco X')
-            st.subheader('Mediano plazo: 4-12 meses')
-            st.write('Las mejores tasas se encuentran en el banco Y')
-            
-        with st.expander("Endeudamiento:"):
-            st.subheader('Con garantía')
-            st.write('Las mejores tasas se encuentran en el banco X')
-            st.subheader('Sin garantía')
-            st.write('Las mejores tasas se encuentran en el banco Y')
-            
-        with st.expander("Rendimiento:"):
-            st.subheader('En Depósitos a Término Fijo')
-            st.write('Hasta 10% Efectivo anual')
-            st.subheader('En Índices Accionarios')
-            st.write('Hasta 15% efectivo anual')
+        # % of States with population difference > 50000
+        states_migration_greater = round((len(df_greater_50000)/df_population_difference_sorted.states.nunique())*100)
+        states_migration_less = round((len(df_less_50000)/df_population_difference_sorted.states.nunique())*100)
+        donut_chart_greater = make_donut(states_migration_greater, 'Inbound Migration', 'green')
+        donut_chart_less = make_donut(states_migration_less, 'Outbound Migration', 'red')
+    else:
+        states_migration_greater = 0
+        states_migration_less = 0
+        donut_chart_greater = make_donut(states_migration_greater, 'Inbound Migration', 'green')
+        donut_chart_less = make_donut(states_migration_less, 'Outbound Migration', 'red')
+
+    migrations_col = st.columns((0.2, 1, 0.2))
+    with migrations_col[1]:
+        st.write('Inbound')
+        st.altair_chart(donut_chart_greater)
+        st.write('Outbound')
+        st.altair_chart(donut_chart_less)
+
+with col[1]:
+    st.markdown('#### Total Population')
     
+    choropleth = make_choropleth(df_selected_year, 'states_code', 'population', selected_color_theme)
+    st.plotly_chart(choropleth, use_container_width=True)
     
-    with col9:
-        st.write('Oportunidades Comerciales 👤')
-        with st.expander("Hoy:"):
-            st.subheader('Restaurantes')
-            st.write('Semana del Rissoto en Valencia')
-            
-        with st.expander("Mañana:"):
-            st.subheader('Restaurantes')
-            st.write('Feria Gastronómica en Madrid')
+    heatmap = make_heatmap(df_reshaped, 'year', 'states', 'population', selected_color_theme)
+    st.altair_chart(heatmap, use_container_width=True)
     
-        with st.expander("Próxima Semana:"):
-            st.subheader('Restaurantes')
-            st.write('Inflación Alimenticia mayor en Asturias')
+
+with col[2]:
+    st.markdown('#### Top States')
+
+    st.dataframe(df_selected_year_sorted,
+                 column_order=("states", "population"),
+                 hide_index=True,
+                 width=None,
+                 column_config={
+                    "states": st.column_config.TextColumn(
+                        "States",
+                    ),
+                    "population": st.column_config.ProgressColumn(
+                        "Population",
+                        format="%f",
+                        min_value=0,
+                        max_value=max(df_selected_year_sorted.population),
+                     )}
+                 )
     
-    my_grid = grid(3, 3, vertical_align="bottom")
-    # Row 1:
-    a = my_grid.selectbox("Indica una Producto", ["Producto_1", "Producto_2", "Producto_3", "Producto_4"])
-    b = my_grid.selectbox("Indica tipo de Proveedor", ["Personal", "Energía", "Agua", "Herramientas"])
-    c = my_grid.selectbox("Indica un Fecha", ["Hoy", "Mañana", "Próxima Semana"])
-    
-    # Row 2:
-    my_grid.button("Activar Recomendación a Equipos en Turno", use_container_width=True)
-    my_grid.button("Activar Recomendación a Proveedores", use_container_width=True)
-    my_grid.button("Activar Recomendación a Clientes", use_container_width=True)
+    with st.expander('About', expanded=True):
+        st.write('''
+            - Data: [U.S. Census Bureau](https://www.census.gov/data/datasets/time-series/demo/popest/2010s-state-total.html).
+            - :orange[**Gains/Losses**]: states with high inbound/ outbound migration for selected year
+            - :orange[**States Migration**]: percentage of states with annual inbound/ outbound migration > 50,000
+            ''')
