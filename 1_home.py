@@ -501,60 +501,60 @@ if a:
     col4.metric("Bancos", "10%", "3%")
 
     st.subheader('Desafíos Comerciales')
-        option = {
-                "title": {"text": "Eficacia Ventas", "subtext": "Porcentaje Conversión(%)"},
-                "tooltip": {"trigger": "item", "formatter": "{a} <br/>{b} : {c}%"},
-                "toolbox": {
-                    "feature": {
-                        "dataView": {"readOnly": False},
-                        "restore": {},
-                        "saveAsImage": {},
-                    }
+    option = {
+            "title": {"text": "Eficacia Ventas", "subtext": "Porcentaje Conversión(%)"},
+            "tooltip": {"trigger": "item", "formatter": "{a} <br/>{b} : {c}%"},
+            "toolbox": {
+                "feature": {
+                    "dataView": {"readOnly": False},
+                    "restore": {},
+                    "saveAsImage": {},
+                }
+            },
+            "legend": {"data": ["Contactados", "Interesados", "Persuadidos", "Comprometidos", "Clientes"]},
+            "series": [
+                {
+                    "name": "Contactados",
+                    "type": "funnel",
+                    "left": "10%",
+                    "width": "80%",
+                    "label": {"formatter": "{b}%"},
+                    "labelLine": {"show": False},
+                    "itemStyle": {"opacity": 0.7},
+                    "emphasis": {
+                        "label": {"position": "inside", "formatter": "{b}预期: {c}%"}
+                    },
+                    "data": [
+                        {"value": 60, "name": "Persuadidos"},
+                        {"value": 40, "name": "Comprometidos"},
+                        {"value": 20, "name": "Clientes"},
+                        {"value": 80, "name": "Interesados"},
+                        {"value": 100, "name": "Contactados"},
+                    ],
                 },
-                "legend": {"data": ["Contactados", "Interesados", "Persuadidos", "Comprometidos", "Clientes"]},
-                "series": [
-                    {
-                        "name": "Contactados",
-                        "type": "funnel",
-                        "left": "10%",
-                        "width": "80%",
-                        "label": {"formatter": "{b}%"},
-                        "labelLine": {"show": False},
-                        "itemStyle": {"opacity": 0.7},
-                        "emphasis": {
-                            "label": {"position": "inside", "formatter": "{b}预期: {c}%"}
-                        },
-                        "data": [
-                            {"value": 60, "name": "Persuadidos"},
-                            {"value": 40, "name": "Comprometidos"},
-                            {"value": 20, "name": "Clientes"},
-                            {"value": 80, "name": "Interesados"},
-                            {"value": 100, "name": "Contactados"},
-                        ],
+                {
+                    "name": "Margen",
+                    "type": "funnel",
+                    "left": "10%",
+                    "width": "80%",
+                    "maxSize": "80%",
+                    "label": {"position": "inside", "formatter": "{c}%", "color": "#fff"},
+                    "itemStyle": {"opacity": 0.5, "borderColor": "#fff", "borderWidth": 2},
+                    "emphasis": {
+                        "label": {"position": "inside", "formatter": "{b}实际: {c}%"}
                     },
-                    {
-                        "name": "Margen",
-                        "type": "funnel",
-                        "left": "10%",
-                        "width": "80%",
-                        "maxSize": "80%",
-                        "label": {"position": "inside", "formatter": "{c}%", "color": "#fff"},
-                        "itemStyle": {"opacity": 0.5, "borderColor": "#fff", "borderWidth": 2},
-                        "emphasis": {
-                            "label": {"position": "inside", "formatter": "{b}实际: {c}%"}
-                        },
-                        "data": [
-                            {"value": 30, "name": "Persuadidos"},
-                            {"value": 10, "name": "Comprometidos"},
-                            {"value": 5, "name": "Clientes"},
-                            {"value": 50, "name": "Interesados"},
-                            {"value": 80, "name": "Contactados"},
-                        ],
-                        "z": 100,
-                    },
-                ],
-            }
-        st_echarts(option, height="500px")
+                    "data": [
+                        {"value": 30, "name": "Persuadidos"},
+                        {"value": 10, "name": "Comprometidos"},
+                        {"value": 5, "name": "Clientes"},
+                        {"value": 50, "name": "Interesados"},
+                        {"value": 80, "name": "Contactados"},
+                    ],
+                    "z": 100,
+                },
+            ],
+        }
+    st_echarts(option, height="500px")
     
       if b == "Sistemas de Recomendaciones":
         colored_header(
