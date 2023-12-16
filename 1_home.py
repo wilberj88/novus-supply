@@ -12,7 +12,7 @@ import requests
 import pandas as pd
 from streamlit_extras.let_it_rain import rain 
 import plotly.graph_objects as go
-import altair as lt
+import altair as alt
 import plotly.express as px
 
 
