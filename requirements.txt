@@ -13,3 +13,4 @@ streamlit_card
 streamlit_extras
 streamlit_folium
 pytrends
+altair
