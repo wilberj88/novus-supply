@@ -24,6 +24,8 @@ hist_df = pd.DataFrame(hist_json).drop('timestampHuman', axis = 1).rename(column
 hist_df.time = pd.to_datetime(hist_df.time, unit = 's')
 st.dataframe(hist_df.tail())
 
+btc_price = requests.get(f'https://api.taapi.io/price?secret={api_key}&exchange=binance&symbol=BTC/USDT&interval=1m').json()
+st.dataframe(btc_price)
 
 # Define indicator
 indicator = "rsi"
