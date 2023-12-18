@@ -1,6 +1,7 @@
 import streamlit as st
 # Import the requests library 
 import requests 
+import pandas as pd
 
 
 st.set_page_config(
