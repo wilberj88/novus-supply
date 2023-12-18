@@ -27,7 +27,7 @@ st.markdown(
     """, unsafe_allow_html = True
 )
 
-with open('styles.css') as f:
+with open('/styles.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html = True)
 
 api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVlIjoiNjU4MGJkMDkxNDBjZmQ3MjNkMTQyNDFhIiwiaWF0IjoxNzAyOTM2NDQ5LCJleHAiOjMzMjA3NDAwNDQ5fQ.dxJczsaCJE5gAmbSd6xD3-0k5yaFruoaNLYMxLz2Oaw"
