@@ -14,3 +14,4 @@ streamlit_extras
 streamlit_folium
 pytrends
 altair
+lightweight_charts
