@@ -16,6 +16,12 @@ st.write("""
 st.sidebar.markdown("Desarrollado por [Novus Mando] (www.novussolutions.io)")
 
 
+api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVlIjoiNjU4MGJkMDkxNDBjZmQ3MjNkMTQyNDFhIiwiaWF0IjoxNzAyOTM2NDQ5LCJleHAiOjMzMjA3NDAwNDQ5fQ.dxJczsaCJE5gAmbSd6xD3-0k5yaFruoaNLYMxLz2Oaw"
+url = f'https://api.taapi.io/candles?secret={api_key}&exchange=binance&symbol=BTC/USDT&interval=1d&period=365'
+hist_json = requests.get(url).json()
+hist_df = pd.DataFrame(hist_json).drop('timestampHuman', axis = 1).rename(columns = {'timestamp':'time'})
+hist_df.time = pd.to_datetime(hist_df.time, unit = 's')
+hist_df.tail()
 
 
 # Define indicator
