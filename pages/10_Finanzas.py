@@ -22,7 +22,7 @@ url = f'https://api.taapi.io/candles?secret={api_key}&exchange=binance&symbol=BT
 hist_json = requests.get(url).json()
 hist_df = pd.DataFrame(hist_json).drop('timestampHuman', axis = 1).rename(columns = {'timestamp':'time'})
 hist_df.time = pd.to_datetime(hist_df.time, unit = 's')
-hist_df.tail()
+st.dataframe(hist_df.tail())
 
 
 # Define indicator
