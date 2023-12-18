@@ -5,8 +5,8 @@ import pandas as pd
 
 
 st.set_page_config(
-  page_title="Novus Mando Fifa",
-  page_icon="⚽",
+  page_title="Novus Mando",
+  page_icon="🎮",
   layout="wide"
 )
 
