@@ -85,11 +85,10 @@ df_reshaped = pd.read_csv('data/us-population-2010-2019-reshaped.csv')
 st.write("""
 # 🎮 Novus Mando 🚚 Supply Chain 🏭
 """)
-st.header("Real time Monitoring, Operations & Simulations")
-st.subheader("Please select a market to analyze demand")
-a = st.selectbox("Choose a Country", ("USA", "COL", "UK", "SPAIN"), index=None, placeholder="Choose an option")
+st.header("🇺🇸 US Market Real 🕒 time Monitoring 🔎")
+a = st.selectbox("Choose a topic:", ("Population & Migrations", "Weather", "Trends", "Stocks"), index=None, placeholder="Choose an option")
 
-if a:
+if a == "Population & Migrations":
 #######################
 # USER SELECTION
   year_list = list(df_reshaped.year.unique())[::-1]    
