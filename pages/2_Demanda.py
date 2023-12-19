@@ -85,8 +85,8 @@ df_reshaped = pd.read_csv('data/us-population-2010-2019-reshaped.csv')
 st.write("""
 # 🎮 Novus Mando 🚚 Supply Chain 🏭
 """)
-st.header("🇺🇸 US Market Real 🕒 time Monitoring 🔎")
-st.subheader("Trends, Weather, Population & Migrations")
+st.header("🇺🇸 US Market")
+st.subheader("Population & Migrations")
 
 # USER SELECTION
 year_list = list(df_reshaped.year.unique())[::-1]    
