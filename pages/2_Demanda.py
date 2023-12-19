@@ -86,7 +86,7 @@ st.write("""
 # 🎮 Novus Mando 🚚 Supply Chain 🏭
 """)
 st.header("🇺🇸 US Market Real 🕒 time Monitoring 🔎")
-a = st.selectbox("Choose a topic:", ("Population & Migrations", "Weather", "Trends", "Stocks"), index=None, placeholder="Choose an option")
+a = st.selectbox("Choose a topic:", ("Population & Migrations", "Weather & Trends"), index=None, placeholder="Choose an option")
 
 if a == "Population & Migrations":
 #######################
