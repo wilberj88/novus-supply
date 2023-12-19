@@ -14,7 +14,7 @@ Modelación Base:
 
 Modelación Total:
 1) Demanda
-2) Inventario
+2) Inventario: https://towardsdatascience.com/supply-planning-using-linear-programming-with-python-bff2401bf270
 3) Fábrica
 4) Producción
 5) Almacenamiento
