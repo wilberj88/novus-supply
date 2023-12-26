@@ -14,7 +14,8 @@ from streamlit_extras.let_it_rain import rain
 import plotly.graph_objects as go
 import altair as alt
 import plotly.express as px
-
+from streamlit_lottie import st_lottie
+import json
 
 #######################
 # Page configuration
