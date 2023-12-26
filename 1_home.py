@@ -124,9 +124,15 @@ with col[2]:
   st_lottie(lottie_json5, height=300)
 
 st.markdown('### Análisis Temporal')
-  lottie_file6 = 'data/temporal.json'
-  lottie_json7 = load_lottiefile(lottie_file6)
-  st_lottie(lottie_json6, height=300)
+lottie_file6 = 'data/temporal.json'
+lottie_json6 = load_lottiefile(lottie_file6)
+st_lottie(lottie_json6, height=300)
+
+st.markdown('### Análisis Climático')
+lottie_file7 = 'data/clima.json'
+lottie_json7 = load_lottiefile(lottie_file7)
+st_lottie(lottie_json7, height=300)
+
 
 
 a = st.selectbox("Selecciona qué quieres optimizar con tu Mando 🎮:", ("Ingresos", "Costos", "Rentabilidad", "Sostenibilidad"), index=None, placeholder="Choose an option")
