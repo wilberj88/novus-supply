@@ -85,7 +85,7 @@ colA, colB, colC = st.columns(3)
 with colA:
   lottie_file2 = 'data/mando2.json'
   lottie_json2 = load_lottiefile(lottie_file2)
-  st_lottie(lottie_json2, height=200)
+  st_lottie(lottie_json2, height=250)
   
   
 with colB:
@@ -95,13 +95,12 @@ with colB:
   # 🎮 Novus Mando
   """)
   st.header("🚚 Cadena de Suministro 🏭")
-  st.subheader("Home")
   
 
 with colC:
   lottie_file = 'data/mando1.json'
   lottie_json = load_lottiefile(lottie_file)
-  st_lottie(lottie_json, height=200)
+  st_lottie(lottie_json, height=250)
 
 a = st.selectbox("Selecciona qué quieres optimizar con tu Mando 🎮:", ("Ingresos", "Costos", "Rentabilidad", "Sostenibilidad"), index=None, placeholder="Choose an option")
 if a:
