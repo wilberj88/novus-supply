@@ -88,7 +88,7 @@ def load_lottiefile(path: str):
     data = json.load(f)
   return data
 
-lottie_file = ''
+lottie_file = 'data/mando1.json'
 lottie_json = load_lottiefile(lottie_file)
 
 st.sidebar.markdown("Desarrollado por [Novus Mando, S.L.] (www.novussolutions.io)")
