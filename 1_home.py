@@ -106,7 +106,7 @@ with st.container():
   st.header('Monitoreo Mundial en Tiempo Real')
   lottie_file3 = 'data/realtime.json'
   lottie_json3 = load_lottiefile(lottie_file3)
-  container.st_lottie(lottie_json3, height=300)
+  st_lottie(lottie_json3, height=300)
 
 
 colX, colY = st.columns(2)
