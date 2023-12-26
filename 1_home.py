@@ -82,8 +82,10 @@ with colA:
   #######################
   # Title
   st.write("""
-  # 🎮 Novus Mando 🚚 Cadena de Suministro 🏭 Home
+  # 🎮 Novus Mando
   """)
+  st.header("🚚 Cadena de Suministro 🏭")
+  st.subheader("Home")
   
 with colB:
   def load_lottiefile(path: str):
