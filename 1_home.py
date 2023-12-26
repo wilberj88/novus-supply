@@ -76,9 +76,19 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-
-colA, colB = st.columns(2)
+def load_lottiefile(path: str):
+    with open(path) as f:
+      data = json.load(f)
+    return data
+  
+colA, colB, colC = st.columns(3)
 with colA:
+  lottie_file = 'data/mando1.json'
+  lottie_json = load_lottiefile(lottie_file)
+  st_lottie(lottie_json, height=200)
+  
+  
+with colB:
   #######################
   # Title
   st.write("""
@@ -87,18 +97,11 @@ with colA:
   st.header("🚚 Cadena de Suministro 🏭")
   st.subheader("Home")
   
-with colB:
-  def load_lottiefile(path: str):
-    with open(path) as f:
-      data = json.load(f)
-    return data
-  lottie_file = 'data/mando1.json'
-  lottie_json = load_lottiefile(lottie_file)
-  st_lottie(lottie_json, height=200)
 
-
-st.sidebar.markdown("Desarrollado por [Novus Mando, S.L.] (www.novussolutions.io)")
-
+with colC:
+  lottie_file2 = 'data/mando2.json'
+  lottie_json2 = load_lottiefile(lottie_file2)
+  st_lottie(lottie_json2, height=200)
 
 a = st.selectbox("Selecciona qué quieres optimizar con tu Mando 🎮:", ("Ingresos", "Costos", "Rentabilidad", "Sostenibilidad"), index=None, placeholder="Choose an option")
 if a:
