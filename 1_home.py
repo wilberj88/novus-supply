@@ -103,10 +103,13 @@ with colC:
   st_lottie(lottie_json, height=200)
 
 with st.container():
-  st.header('Monitoreo Mundial en Tiempo Real')
-  lottie_file3 = 'data/realtime.json'
-  lottie_json3 = load_lottiefile(lottie_file3)
-  st_lottie(lottie_json3, height=300)
+  col1, col2 = st.columns(2)
+  with col1:
+    st.header('Monitoreo Mundial en Tiempo Real')
+  with col2:
+    lottie_file3 = 'data/realtime.json'
+    lottie_json3 = load_lottiefile(lottie_file3)
+    st_lottie(lottie_json3, height=300)
 
 
 colX, colY = st.columns(2)
