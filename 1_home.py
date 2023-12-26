@@ -106,8 +106,7 @@ with colC:
 col = st.columns((4, 2, 2), gap='medium')
 
 with col[0]:
-    st.markdown('### Monitoreo Mundial en Tiempo Real')
-    st.markdown('<div style="text-align: center;">Hello World!</div>', unsafe_allow_html=True)
+    st.markdown('<div style="text-align: center;">### Monitoreo Mundial en Tiempo Real</div>', unsafe_allow_html=True)
     lottie_file3 = 'data/realtime.json'
     lottie_json3 = load_lottiefile(lottie_file3)
     st_lottie(lottie_json3, height=300)
