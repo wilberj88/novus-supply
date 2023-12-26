@@ -103,7 +103,7 @@ with colC:
   st_lottie(lottie_json, height=200)
 
 
-col = st.columns((1.5, 4.5, 2), gap='medium')
+col = st.columns((4, 2, 2), gap='medium')
 
 with col[0]:
     st.markdown('### Monitoreo Mundial en Tiempo Real')
