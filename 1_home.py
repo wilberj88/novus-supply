@@ -123,15 +123,18 @@ with col[2]:
   lottie_json5 = load_lottiefile(lottie_file5)
   st_lottie(lottie_json5, height=300)
 
-st.markdown('### Análisis Temporal')
-lottie_file6 = 'data/temporal.json'
-lottie_json6 = load_lottiefile(lottie_file6)
-st_lottie(lottie_json6, height=300)
+colA, colB = st.columns(2)
+with colA:
+  st.markdown('### Análisis Temporal')
+  lottie_file6 = 'data/temporal.json'
+  lottie_json6 = load_lottiefile(lottie_file6)
+  st_lottie(lottie_json6, height=300)
 
-st.markdown('### Análisis Climático')
-lottie_file7 = 'data/clima.json'
-lottie_json7 = load_lottiefile(lottie_file7)
-st_lottie(lottie_json7, height=300)
+with colB:
+  st.markdown('### Análisis Climático')
+  lottie_file7 = 'data/clima.json'
+  lottie_json7 = load_lottiefile(lottie_file7)
+  st_lottie(lottie_json7, height=300)
 
 
 
