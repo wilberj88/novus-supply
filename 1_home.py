@@ -20,7 +20,7 @@ import json
 #######################
 # Page configuration
 st.set_page_config(
-  page_title="Novus Mando Chains",
+  page_title="Novus Mando - Cadena Suministro",
   page_icon="🏭",
   layout="wide"
 )
@@ -80,10 +80,18 @@ st.markdown("""
 #######################
 # Title
 st.write("""
-# 🎮 Novus Mando 🚚 Supply Chain 🏭 Home
+# 🎮 Novus Mando 🚚 Cadena de Suministro 🏭 Home
 """)
 
-st.sidebar.markdown("Desarrollado por [Novus Mando] (www.novussolutions.io)")
+def load_lottiefile(path: str):
+  with open(path) as f:
+    data = json.load(f)
+  return data
+
+lottie_file = ''
+lottie_json = load_lottiefile(lottie_file)
+
+st.sidebar.markdown("Desarrollado por [Novus Mando, S.L.] (www.novussolutions.io)")
 
 
 a = st.selectbox("Selecciona qué quieres optimizar con tu Mando 🎮:", ("Ingresos", "Costos", "Rentabilidad", "Sostenibilidad"), index=None, placeholder="Choose an option")
