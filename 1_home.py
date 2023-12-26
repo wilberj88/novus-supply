@@ -103,12 +103,15 @@ with colC:
   st_lottie(lottie_json, height=200)
 
 
+container = st.container(border=True)
+container.write("Monitoreo en Tiempo Real")
+lottie_file3 = 'data/realtime.json'
+lottie_json3 = load_lottiefile(lottie_file3)
+container.st_lottie(lottie_json3, height=300)
+
 
 colX, colY = st.columns(2)
 with colX:
-  lottie_file3 = 'data/realtime.json'
-  lottie_json3 = load_lottiefile(lottie_file3)
-  st_lottie(lottie_json3, height=300)
   lottie_file4 = 'data/alarma.json'
   lottie_json4 = load_lottiefile(lottie_file4)
   st_lottie(lottie_json4, height=300)
