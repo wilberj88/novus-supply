@@ -102,6 +102,25 @@ with colC:
   lottie_json = load_lottiefile(lottie_file)
   st_lottie(lottie_json, height=200)
 
+
+
+colX, colY = st.columns(2)
+with colX:
+  lottie_file3 = 'data/realtime.json'
+  lottie_json3 = load_lottiefile(lottie_file)
+  st_lottie(lottie_json3, height=300)
+  lottie_file4 = 'data/alarma.json'
+  lottie_json4 = load_lottiefile(lottie_file)
+  st_lottie(lottie_json4, height=300)
+  lottie_file5 = 'data/recomendacion.json'
+  lottie_json5 = load_lottiefile(lottie_file)
+  st_lottie(lottie_json5, height=300)
+
+with colY:
+  st.title('Real Time Monitoring')
+  st.title('Alarmas')
+  st.title('Recomendaciones')
+
 a = st.selectbox("Selecciona qué quieres optimizar con tu Mando 🎮:", ("Ingresos", "Costos", "Rentabilidad", "Sostenibilidad"), index=None, placeholder="Choose an option")
 if a:
   b = st.selectbox("Selecciona el módulo de análisis 🔎:", ("Estrategia Gobernanza de Datos", "Datos Históricos", "Datos en Tiempo Real", "Sistemas de Alarmas", "Sistemas de Recomendaciones"), index=None, placeholder="Choose an option")
