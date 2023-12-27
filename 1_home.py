@@ -721,7 +721,7 @@ with footer_container:
   with col1:
     st.header("Misión")
     st.subheader("Navegar la 5ta Revolución Industrial")
-    st.image('https://icons8.com/icon/FzKGtkyzVIdH/artificial-intelligence')
+    st.image('https://unsplash.com/es/fotos/foto-de-primer-plano-de-anteojos-w7ZyuGYNpRQ')
   with col2:
     st.header("Visión")
     st.subheader("Personas, equipos y empresas operando en tiempo real")
