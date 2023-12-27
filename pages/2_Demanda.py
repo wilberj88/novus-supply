@@ -306,13 +306,13 @@ position: fixed;
 left: 0;
 bottom: 0;
 width: 100%;
-background-color: white;
+background-color: grey;
 color: black;
 text-align: center;
 }
 </style>
 <div class="footer">
-<p>Developed with ❤ by <a style='display: block; text-align: center;' href="https://www.heflin.dev/" target="_blank">Heflin Stephen Raj S</a></p>
+<p>Developed with ❤ by <a style='display: block; text-align: center;' href="https://www.novussolutions.io/" target="_blank">Novus Solutions</a></p>
 </div>
 """
 st.markdown(footer,unsafe_allow_html=True)
