@@ -713,3 +713,32 @@ if a:
     my_grid.button("Activar Recomendación a Proveedores", use_container_width=True)
     my_grid.button("Activar Recomendación a Clientes", use_container_width=True)
 
+
+footer="""<style>
+a:link , a:visited{
+color: blue;
+background-color: transparent;
+text-decoration: underline;
+}
+
+a:hover,  a:active {
+color: red;
+background-color: transparent;
+text-decoration: underline;
+}
+
+.footer {
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+background-color: grey;
+color: black;
+text-align: center;
+}
+</style>
+<div class="footer">
+<p>Developed with ❤ by <a style='display: block; text-align: center;' href="https://www.novussolutions.io/" target="_blank">Novus Solutions</a></p>
+</div>
+"""
+st.markdown(footer,unsafe_allow_html=True)
