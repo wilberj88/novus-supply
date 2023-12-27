@@ -714,31 +714,18 @@ if a:
     my_grid.button("Activar Recomendación a Clientes", use_container_width=True)
 
 
-footer="""<style>
-a:link , a:visited{
-color: blue;
-background-color: transparent;
-text-decoration: underline;
-}
+footer_container = st.container()
 
-a:hover,  a:active {
-color: red;
-background-color: transparent;
-text-decoration: underline;
-}
+with footer_container:
+  col1, col2, col3 = st.columns{(2,1,1)}
+  with col1:
+    st.header("Misión")
+    st.subheader("Navegar la 5ta Revolución Industrial")
+  with col2:
+    st.header("Visión")
+    st.subheader("Personas, equipos y empresas operando en tiempo real")
+  with col3:
+    st.header("Contacto")
+    st.write("www.novussolutions.io")
 
-.footer {
-position: fixed;
-left: 0;
-bottom: 0;
-width: 100%;
-background-color: grey;
-color: black;
-text-align: center;
-}
-</style>
-<div class="footer">
-<p>Developed with ❤ by <a style='display: block; text-align: center;' href="https://www.novussolutions.io/" target="_blank">Novus Solutions</a></p>
-</div>
-"""
-st.markdown(footer,unsafe_allow_html=True)
+
