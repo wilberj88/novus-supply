@@ -720,8 +720,7 @@ with footer_container:
   col1, col2, col3 = st.columns((2,1,1), gap='medium')
   with col1:
     st.header("Misión")
-    st.subheader("Navegar la 5ta Revolución Industrial")
-    st.image('https://unsplash.com/es/fotos/foto-de-primer-plano-de-anteojos-w7ZyuGYNpRQ')
+    st.subheader("Crear soluciones de IA para todos")
   with col2:
     st.header("Visión")
     st.subheader("Personas, equipos y empresas operando en tiempo real")
