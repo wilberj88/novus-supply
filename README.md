@@ -20,7 +20,7 @@ Modelación Total:
 5) Almacenamiento
 6) Recogida
 7) Ruta
-8) Distribución: https://towardsdatascience.com/supply-planning-using-linear-programming-with-python-bff2401bf270
+8) Distribución: https://towardsdatascience.com/supply-planning-using-linear-programming-with-python-bff2401bf270, https://medium.com/@tayljordan/optimizing-port-rotation-using-python-and-searoute-f6b1322f5771
 9) Comercialización
 10) Venta: https://medium.com/@anjaliramesh/forecasting-walmart-sales-with-machine-learning-2a1249c55c9c https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting
 11) Post Venta
