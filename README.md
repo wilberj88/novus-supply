@@ -2,7 +2,7 @@
 
 Formatos de Modelación bajo objetivos:
 1) Reducir costos
-2) Reducir emisiones
+2) Reducir emisiones: https://towardsdatascience.com/data-science-for-sustainability-green-inventory-management-e7ddfd97696f
 3) Aumentar ingresos
 4) Aumentar margen
 
