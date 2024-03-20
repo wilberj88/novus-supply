@@ -34,6 +34,7 @@ Supply Chain Digital Twin:
 https://towardsdatascience.com/what-is-a-supply-chain-digital-twin-e7a8cd9aeb75
 https://cloud.viktor.ai/public/sustainable-supply-chain-network-optimization
 Python code for: 1) factory + Production ; 2) warehouse + picking + delivery + route; 3) Store
+https://heartbeat.comet.ml/revolutionizing-retail-the-evolution-of-customer-experience-and-supply-chain-through-artificial-e3b42845412d
 
 Ai on Industry:
 https://moez-62905.medium.com/revolutionizing-manufacturing-how-ai-is-disrupting-the-industry-7947847d4d8a
