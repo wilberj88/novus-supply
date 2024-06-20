@@ -312,7 +312,7 @@ text-align: center;
 }
 </style>
 <div class="footer">
-<p>Developed with ❤ by Wilber Jimenez at<a style='display: block; text-align: center;' href="https://www.novussolutions.io/" target="_blank">Novus Solutions</a></p>
+<p>Developed with ❤ by Wilber Jimenez</p>
 </div>
 """
 st.markdown(footer,unsafe_allow_html=True)
